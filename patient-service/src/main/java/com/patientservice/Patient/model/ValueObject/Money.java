@@ -12,6 +12,9 @@ import java.util.Objects;
 @Getter
 @Builder
 
+/**
+ * The Money value object in the Medical History entity.
+ */
 public class Money {
     private Double amount;
     private String currency;

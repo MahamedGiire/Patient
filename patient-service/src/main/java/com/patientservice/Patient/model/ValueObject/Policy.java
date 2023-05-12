@@ -14,6 +14,9 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 
+/**
+ * The Policy value object in the Insurance entity.
+ */
 public class Policy {
     private String policyNumber;
 

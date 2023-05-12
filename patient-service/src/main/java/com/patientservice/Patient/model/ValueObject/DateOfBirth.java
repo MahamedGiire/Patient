@@ -13,6 +13,9 @@ import java.util.Objects;
 @Getter
 @Builder
 
+/**
+ * The DateOfBirth value object in the Patient entity
+ */
 public class DateOfBirth {
     private  int day;
     private  int month;

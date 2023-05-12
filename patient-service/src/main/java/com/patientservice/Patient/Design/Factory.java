@@ -37,6 +37,16 @@ public class Factory {
     @Autowired
     private final InsuranceRepository insuranceRepository;
 
+    /**
+     * Creates a new instance of the Patient class.
+     *
+     * @param patientDTO pass the DTO of the patient entity
+     *
+     * Check if name already exist.
+     * Check if email already exist.
+     *
+     * @return the patient
+     */
     public Patient createPatient(PatientDTO patientDTO) {
         if (patientRepository.findByName(patientDTO.getName()).isPresent()) {
             throw new DuplicateEntryException("Name already exists.");
@@ -50,6 +60,16 @@ public class Factory {
         return patient;
     }
 
+    /**
+     * Creates a new instance of the Medical History class.
+     *
+     * @param medicalHistoryDTO pass the DTO of the Medical History entity
+     *
+     * Check if patient already exist.
+     * Check if patient has already received the diagnosis.
+     *
+     * @return the Medical History
+     */
     public MedicalHistory createMedicalHistory(MedicalHistoryDTO medicalHistoryDTO) {
         if (patientRepository.findById(medicalHistoryDTO.getPatient().getId()).isEmpty()) {
             throw new PatientNotFoundException(medicalHistoryDTO.getPatient());
@@ -69,6 +89,16 @@ public class Factory {
         return medicalHistory;
     }
 
+    /**
+     * Creates a new instance of the Insurance class.
+     *
+     * @param insuranceDTO pass the DTO of the Insurance entity
+     *
+     * Check if patient already exist.
+     * Check if the policy number already exist.
+     *
+     * @return the insurance
+     */
     public Insurance createInsurance(InsuranceDTO insuranceDTO){
         if (patientRepository.findById(insuranceDTO.getPatient().getId()).isEmpty()) {
             throw new PatientNotFoundException(insuranceDTO.getPatient());

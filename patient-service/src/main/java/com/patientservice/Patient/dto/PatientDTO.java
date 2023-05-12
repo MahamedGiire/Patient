@@ -11,6 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
+/**
+ * DTO for the Patient Entity
+ */
 public class PatientDTO {
     @NotNull(message = "Id must not be null")
     private Long id;

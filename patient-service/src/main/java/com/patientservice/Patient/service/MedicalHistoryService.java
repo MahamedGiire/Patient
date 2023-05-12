@@ -31,9 +31,9 @@ public class MedicalHistoryService {
      * I would like a priority on a Patient's Medical History,
      * So that i can determine the situation faster.
      *
-     * Add a Medical Record to a Patient
+     * Add a Medical Record to a Patient.
      *
-     * @param medicalHistoryDTO Pass the MedicalHistoryDTO to addMedicalRecord
+     * @param medicalHistoryDTO Pass the MedicalHistoryDTO to addMedicalRecord.
      */
     @Transactional
     public void addMedicalRecord(MedicalHistoryDTO medicalHistoryDTO) throws DuplicateEntryException, DatabaseOperationException {
@@ -62,11 +62,26 @@ public class MedicalHistoryService {
 
     }
 
+    /**
+     *
+     * Retrieve all Medical History's in the database.
+     *
+     * @return List of medical history's
+     *
+     */
     public List<MedicalHistoryDTO> getAllMedicalHistory() {
         List<MedicalHistory> medicalHistories = medicalHistoryRepository.findAll();
         return medicalHistories.stream().map(this::mapToMedicalHistoryDTO).toList();
     }
 
+    /**
+     *
+     * Map the DTO of the Medical History Entity.
+     *
+     * @param medicalHistory Pass the entity to the method.
+     *
+     * @return Medical History DTO build with the Medical History Data
+     */
     private MedicalHistoryDTO mapToMedicalHistoryDTO(MedicalHistory medicalHistory) {
         return MedicalHistoryDTO.builder()
                 .recordsID(medicalHistory.getRecordsID())
@@ -78,6 +93,14 @@ public class MedicalHistoryService {
                 .build();
     }
 
+    /**
+     *
+     * Get the patient fixed to certain medical history.
+     *
+     * @param patientID Pass the patient id.
+     *
+     * @return patient.
+     */
     public List<Patient> getPatientInMedicalHistory(Long patientID) {
         List<Patient> patient = medicalHistoryRepository.findByPatientID(patientID);
         return patient;

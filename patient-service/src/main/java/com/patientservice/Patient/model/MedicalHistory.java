@@ -51,7 +51,7 @@ public class MedicalHistory{
 
 
     /**
-     * Creates a new instance of the MedicalHistory class.
+     * Constructor for the medical history
      *
      * @param recordsID The unique ID for this medical history record.
      * @param patient The patient associated with this medical history record.

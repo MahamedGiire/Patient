@@ -14,6 +14,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 
+/**
+ * DTO for the Insurance Entity
+ */
 public class InsuranceDTO {
     private Long id;
     private Patient patient;

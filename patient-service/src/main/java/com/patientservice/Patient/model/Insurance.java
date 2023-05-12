@@ -48,7 +48,7 @@ public class Insurance {
     private LocalDate endDate; // The EndDate of Insurance
 
     /**
-     * Creates a new instance of the Insurance class.
+     * Constructor for the insurance
      *
      * @param id The unique ID for this insurance policy.
      * @param patient The patient associated with this policy.

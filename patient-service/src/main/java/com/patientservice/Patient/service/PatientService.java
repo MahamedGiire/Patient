@@ -25,6 +25,14 @@ public class PatientService {
     @Autowired
     private final Factory factory;
 
+    /**
+     *
+     * Create a patient.
+     *
+     * @param patientDTO Pass the DTO to the method.
+     *
+     * Method uses the Factory class to create a new instance of patient entity.
+     */
     @Transactional
     public void createPatient(PatientDTO patientDTO) throws DuplicateEntryException, DatabaseOperationException {
 
@@ -39,11 +47,24 @@ public class PatientService {
 
     }
 
+    /**
+     * Returns the patients in our DB
+     *
+     * @return List of patients
+     */
     public List<PatientDTO> getAllPatienten() {
         List<Patient> patients = patientRepository.findAll();
         return patients.stream().map(this::mapToPatientDTO).toList();
     }
 
+    /**
+     *
+     * Map the DTO to the Patient Entity.
+     *
+     * @param patient Pass the entity to method
+     *
+     * @return Patient DTO build with the Patient Data
+     */
     private PatientDTO mapToPatientDTO(Patient patient) {
         return PatientDTO.builder()
                 .id(patient.getId())
@@ -54,6 +75,14 @@ public class PatientService {
                     .build();
     }
 
+
+    /**
+     *
+     * Delete a patient from the database
+     *
+     * @param id of the patient
+     *
+     */
     public void deletePatient(Long id) throws DatabaseOperationException {
         try {
             Patient patient = patientRepository.findById(id)
@@ -67,6 +96,14 @@ public class PatientService {
         }
     }
 
+    /**
+     *
+     * Update a patient from the database
+     *
+     * @param id of the patient
+     * @param patientDTO dto of the patient entity
+     *
+     */
     public void updatePatient(Long id, PatientDTO patientDTO) throws DatabaseOperationException {
         try {
             Patient patient = patientRepository.findById(id)
@@ -85,10 +122,27 @@ public class PatientService {
         }
     }
 
+    /**
+     *
+     * Find the patient by id
+     *
+     * @param id of the patient
+     *
+     */
     public Optional<Patient> findById(Long id) {
         return patientRepository.findById(id);
     }
 
+
+    /**
+     *
+     * Get the medical history of the patient
+     *
+     * @param patientID of the patient
+     *
+     * @return list of the medical history of patient
+     *
+     */
     public List<MedicalHistory> getMedicalHistoryByPatient(Long patientID) {
         List<MedicalHistory> medicalHistories = patientRepository.getMedicalHistoryByPatient(patientID);
         return medicalHistories;

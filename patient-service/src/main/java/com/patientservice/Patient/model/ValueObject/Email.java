@@ -12,6 +12,9 @@ import lombok.Setter;
 @Getter
 @Builder
 
+/**
+ * The Email value object in the Patient entity
+ */
 public class Email {
     private String address;
 

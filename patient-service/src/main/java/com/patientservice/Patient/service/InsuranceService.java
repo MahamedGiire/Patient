@@ -22,6 +22,13 @@ public class InsuranceService {
     @Autowired
     private final Factory factory;
 
+    /**
+     *
+     * Add insurance to a patient
+     *
+     * @param insuranceDTO pass the dto of insurance entity
+     *
+     */
     @Transactional
     public void addInsurance(InsuranceDTO insuranceDTO) throws DuplicateEntryException, DatabaseOperationException {
 
@@ -36,11 +43,26 @@ public class InsuranceService {
 
     }
 
+    /**
+     *
+     * Get insurance all insurances from the database
+     *
+     * @return List of insurances
+     *
+     */
     public List<InsuranceDTO> getAllInsurances() {
         List<Insurance> insurances = insuranceRepository.findAll();
         return insurances.stream().map(this::mapToInsuranceDTO).toList();
     }
 
+    /**
+     *
+     * Map the DTO of the Insurance Entity.
+     *
+     * @param insurance Pass the entity to the method.
+     *
+     * @return Insurance DTO build with the Insurance Data
+     */
     private InsuranceDTO mapToInsuranceDTO(Insurance insurance) {
         return InsuranceDTO.builder()
                 .id(insurance.getId())

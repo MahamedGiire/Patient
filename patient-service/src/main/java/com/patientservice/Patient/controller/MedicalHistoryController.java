@@ -22,6 +22,13 @@ public class MedicalHistoryController {
     @Autowired
     private final MedicalHistoryService medicalHistoryService;
 
+    /**
+     * Add a medical history to a patient
+     *
+     * @param medicalHistoryDTO, dto of the medical history entity
+     *
+     * @return Response Entity, with the dto
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     private ResponseEntity<MedicalHistory> addMedicalRecord(@RequestBody MedicalHistoryDTO medicalHistoryDTO){
@@ -33,12 +40,24 @@ public class MedicalHistoryController {
         }
     }
 
+    /**
+     * Get all medical history's in the database
+     *
+     * @return List, of medical history's
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<MedicalHistoryDTO> getAllMedicalHistory(){
         return medicalHistoryService.getAllMedicalHistory();
     }
 
+    /**
+     * Get the patient of a certain medical history
+     *
+     * @param id of the patient
+     *
+     * @return patient
+     */
     @GetMapping("/patient/{id}")
     public ResponseEntity<?> getMedicalHistoryByPatient(@PathVariable Long id) {
         try {

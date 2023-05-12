@@ -15,6 +15,9 @@ import java.util.Objects;
 @Getter
 @Builder
 
+/**
+ * The Medications value object in the Medical History entity.
+ */
 public class Medications {
     private List<String> medications;
 

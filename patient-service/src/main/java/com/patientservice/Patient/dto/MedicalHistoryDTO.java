@@ -18,6 +18,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 
+/**
+ * DTO for the Medical History Entity
+ */
 public class MedicalHistoryDTO {
     private UUID recordsID;
     private Patient patient;

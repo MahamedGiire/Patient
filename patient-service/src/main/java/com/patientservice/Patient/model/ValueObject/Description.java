@@ -13,6 +13,9 @@ import java.util.Objects;
 @Getter
 @Builder
 
+/**
+ * The Description value object in the Patient entity
+ */
 public class Description {
     private String description;
 

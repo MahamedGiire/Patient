@@ -13,6 +13,9 @@ import java.util.Objects;
 @Getter
 @Builder
 
+/**
+ * The Diagnosis value object in the Medical History entity.
+ */
 public class Diagnosis {
     private String code;
     private String name;

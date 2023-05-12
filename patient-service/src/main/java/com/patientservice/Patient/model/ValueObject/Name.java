@@ -11,6 +11,9 @@ import lombok.Setter;
 @Getter
 @Builder
 
+/**
+ * The Name value object in the Patient entity
+ */
 public class Name {
 
     private String firstName;

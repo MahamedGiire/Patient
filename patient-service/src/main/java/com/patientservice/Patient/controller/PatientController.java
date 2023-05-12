@@ -21,6 +21,13 @@ public class PatientController {
 
     private final PatientService patientService;
 
+    /**
+     * Create a patient
+     *
+     * @param patientDTO pass the patient dto
+     *
+     * @return ResponseEntity, with the patientDTO.
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     private ResponseEntity<Patient> createPatient(@RequestBody PatientDTO patientDTO){
@@ -32,12 +39,25 @@ public class PatientController {
         }
     }
 
+    /**
+     * Get all patients
+     *
+     * @return List, of all patients
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<PatientDTO> getAllPatienten(){
         return patientService.getAllPatienten();
     }
 
+
+    /**
+     * Get patient by Id
+     *
+     * @param id of the patient
+     *
+     * @return single patient
+     */
     @GetMapping("/{id}")
     public ResponseEntity<?> getPatientById(@PathVariable Long id) {
         try {
@@ -51,6 +71,13 @@ public class PatientController {
         }
     }
 
+    /**
+     * Delete a patient
+     *
+     * @param id of the patient
+     *
+     * @return ResponseEntity, deletes a patient
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> deletePatient(@PathVariable Long id) {
@@ -65,6 +92,14 @@ public class PatientController {
         }
     }
 
+    /**
+     * Update a patient
+     *
+     * @param id of the patient
+     * @param patientDTO dto of the patient
+     *
+     * @return ResponseEntity, update a patient
+     */
     @PutMapping("/{id}")
     public ResponseEntity<String> updatePatient(@PathVariable Long id, @RequestBody PatientDTO patientDTO) {
         try {
@@ -78,6 +113,13 @@ public class PatientController {
         }
     }
 
+    /**
+     * Get the medical history of a patient
+     *
+     * @param id of the patient
+     *
+     * @return List, the medical history of the patient
+     */
     @GetMapping("/medicalHistory/{id}")
     public ResponseEntity<?> getMedicalHistoryByPatient(@PathVariable Long id) {
         try {

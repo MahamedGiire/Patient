@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 
+/**
+ * The Insurance Class Repository
+ */
 public interface InsuranceRepository  extends JpaRepository<Insurance, Long> {
     Optional<Insurance> findByPolicy(Policy policy);
 }

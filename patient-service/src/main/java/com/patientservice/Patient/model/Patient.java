@@ -36,7 +36,7 @@ public class Patient {
     private DateOfBirth dateOfBirth; // The dateOfBirth of Patient
 
     /**
-     * Creates a new instance of the Patient class.
+     * Constructor for the patient
      *
      * @param id The unique ID for this patient.
      * @param name The name of the patient.

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
@@ -59,14 +60,14 @@ public class InsuranceTests {
 
         ResponseEntity<InsuranceDTO> responseEntity = restTemplate.postForEntity("/api/insurance", insuranceDTO, InsuranceDTO.class);
 
-//        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-//
-//        InsuranceDTO savedInsuranceDTO = responseEntity.getBody();
-//        assertNotNull(savedInsuranceDTO);
-//        assertNotNull(savedInsuranceDTO.getId());
-//        assertEquals(insuranceDTO.getProvider(), savedInsuranceDTO.getProvider());
-//        assertEquals(insuranceDTO.getPolicy(), savedInsuranceDTO.getPolicy());
-//        assertEquals(savedPatient.getId(), savedInsuranceDTO.getPatient().getId());
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+
+        InsuranceDTO savedInsuranceDTO = responseEntity.getBody();
+        assertNotNull(savedInsuranceDTO);
+        assertNotNull(savedInsuranceDTO.getId());
+        assertEquals(insuranceDTO.getProvider(), savedInsuranceDTO.getProvider());
+        assertEquals(insuranceDTO.getPolicy(), savedInsuranceDTO.getPolicy());
+        assertEquals(savedPatient.getId(), savedInsuranceDTO.getPatient().getId());
 
     }
 }

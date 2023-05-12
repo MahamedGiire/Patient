@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
 @Getter
 @Builder
 
+/**
+ * The PhoneNumber value object in the Patient entity
+ */
 public class PhoneNumber {
     private String number;
 

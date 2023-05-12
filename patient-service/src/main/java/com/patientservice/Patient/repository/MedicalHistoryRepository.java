@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-
+/**
+ * The Medical History Repository
+ */
 public interface MedicalHistoryRepository extends JpaRepository<MedicalHistory, UUID> {
     Optional<MedicalHistory> findByPatientAndDiagnosis(Patient patient, Diagnosis diagnosis);
 

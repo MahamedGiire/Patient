@@ -12,6 +12,9 @@ import java.util.Objects;
 @Getter
 @Builder
 
+/**
+ * The Provider value object in the Insurance entity.
+ */
 public class Provider {
     private String name;
     private String address;

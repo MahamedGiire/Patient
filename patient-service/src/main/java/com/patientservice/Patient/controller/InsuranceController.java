@@ -17,6 +17,13 @@ public class InsuranceController {
 
     private final InsuranceService insuranceService;
 
+    /**
+     * Add a insurance to a patient
+     *
+     * @param insuranceDTO the dto of the insurance entity
+     *
+     * @return ResponsEntity, with the dto
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     private ResponseEntity<Insurance> createPatient(@RequestBody InsuranceDTO insuranceDTO){
@@ -28,6 +35,11 @@ public class InsuranceController {
         }
     }
 
+    /**
+     * Get all medical history's in the database
+     *
+     * @return List, of insurances
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InsuranceDTO> getAllInsurances(){

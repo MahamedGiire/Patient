@@ -1,5 +1,8 @@
 package com.patientservice.Patient.Exceptions;
 
+/**
+ * Custom exception: DatabaseOperationException
+ */
 public class DatabaseOperationException extends RuntimeException{
 
     public DatabaseOperationException(String message) {

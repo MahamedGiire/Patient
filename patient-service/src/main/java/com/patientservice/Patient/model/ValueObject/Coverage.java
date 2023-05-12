@@ -12,6 +12,9 @@ import java.util.Objects;
 @Getter
 @Builder
 
+/**
+ * The Coverage value object in the Medical History entity.
+ */
 public class Coverage {
     private String coverageType;
     private Double coverageLimit;
