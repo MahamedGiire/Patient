@@ -9,7 +9,6 @@ import com.patientservice.Patient.model.Generator.GenerateRandomUUID;
 import com.patientservice.Patient.model.MedicalHistory;
 import com.patientservice.Patient.model.Patient;
 import com.patientservice.Patient.repository.MedicalHistoryRepository;
-import com.patientservice.Patient.repository.PatientRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

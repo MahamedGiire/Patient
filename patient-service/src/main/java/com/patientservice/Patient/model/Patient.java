@@ -1,6 +1,5 @@
 package com.patientservice.Patient.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.patientservice.Patient.model.ValueObject.*;
 import jakarta.persistence.*;
 import lombok.Builder;
