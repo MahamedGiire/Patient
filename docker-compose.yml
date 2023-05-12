@@ -10,7 +10,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DB_URL=jdbc:postgresql://db:5432/patient
+      - DB_URL=jdbc:postgresql://postgres:5432/patient
       - DB_USER=postgres
       - DB_PASS=admin
     volumes:

@@ -5,15 +5,13 @@ import com.patientservice.Patient.model.ValueObject.*;
 import jakarta.persistence.*;
 import lombok.Builder;
 
-
-
 /**
  * The Patient Class saves the information of the patient
  *
  */
 @Entity
-@Table
 @Builder
+@Table
 
 public class Patient {
 

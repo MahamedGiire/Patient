@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "94614781-6d3f-4d4b-a714-198dc4aa02b4",
+		"name": "Patient Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "DELETE, Patient gegevens verwijderen uit de Database",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/patient/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST, Patient gegevens in de Database",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":{\"firstName\":\"Jan\", \"lastName\":\"Jacobs\"},\r\n    \"dateOfBirth\": {\"day\":2, \"month\":10, \"year\":1997},\r\n    \"email\": \"jan.jacobs@gmail.com\",\r\n    \"mobile\": \"0612345679\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/patient",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT, Patient gegevens aanpassen Database",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":{\"firstName\":\"Jans\", \"lastName\":\"Jacobs\"},\r\n    \"dateOfBirth\": {\"day\":2, \"month\":10, \"year\":1997},\r\n    \"email\": \"jan.jacobs@gmail.com\",\r\n    \"mobile\": \"0612345679\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/patient/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET, Patient gegevens halen uit de Database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/patient",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET, Patient Medische Geschiedenis gegevens halen uit de Database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/patient/medicalHistory/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient",
+								"medicalHistory",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medical History",
+			"item": [
+				{
+					"name": "POST, Voeg Medische geschiedenis toe aan patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient\": {\r\n        \"id\":1,\r\n        \"name\":{\"firstName\":\"Jan\", \"lastName\":\"Jacobs\"},\r\n        \"dateOfBirth\": {\"day\":1, \"month\":10, \"year\":1997},\r\n        \"email\": \"jan.jacobs@gmail.com\",\r\n        \"mobile\": \"0612345679\"\r\n    },\r\n    \"description\":\"Rechter Schouder Luxatie\",\r\n    \"diagnosis\": {\"code\":1234, \"name\":\"Shouder Scheur Graad 3\"},\r\n    \"treatments\": {\"treatments\":[\"Oefening Schouder 2x per dag\", \"Arm niet snel bewegen\", \"Ijs op de schouder\"]},\r\n    \"medications\": {\"medications\":[\"Ibufrofen\", \"Paracetmol\"]}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/medicalHistory",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medicalHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET, Haal Medische geschiedenis uit de database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/medicalHistory",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medicalHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET, Haal Patient op per medische geschiedenis uit de database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/medicalHistory/patient/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medicalHistory",
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Insurance",
+			"item": [
+				{
+					"name": "Post, Voeg een Verzekering aan een Patient toe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient\": {\r\n        \"id\":1,\r\n        \"name\":{\"firstName\":\"Jans\", \"lastName\":\"Jacobs\"},\r\n        \"dateOfBirth\": {\"day\":1, \"month\":10, \"year\":1997},\r\n        \"email\": \"jan.jacobs@gmail.com\",\r\n        \"mobile\": \"0612345679\"\r\n    },\r\n    \"policy\":\"HUIFD9491\",\r\n    \"provider\": {\"name\":\"Zilverenkruis\", \"address\":\"Heidelberglaan 15\"},\r\n    \"money\": {\"amount\":150, \"currency\":\"EURO\"},\r\n    \"coverage\": {\"coverageType\":\"Medium\", \"coverageLimit\":\"10\"},\r\n    \"startDate\":\"2022-12-11\",\r\n    \"endDate\":\"2023-12-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/insurance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"insurance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get, haal alle verzekeringen uit de database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/insurance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"insurance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
