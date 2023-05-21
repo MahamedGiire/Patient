@@ -2,7 +2,9 @@ version: '3.8'
 services:
 
   application:
-    build: ./
+    build:
+      context: ./patient-service
+      dockerfile: Dockerfile
     container_name: patient-app
     depends_on:
       postgres:
