@@ -21,6 +21,7 @@
 	</properties>
 	<modules>
 		<module>patient-service</module>
+		<module>patient-appointments</module>
 	</modules>
 	<dependencies>
 		<dependency>

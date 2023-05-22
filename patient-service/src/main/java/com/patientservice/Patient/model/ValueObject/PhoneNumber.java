@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 @NoArgsConstructor
@@ -30,5 +31,18 @@ public class PhoneNumber {
 
     public boolean isValid(String number) {
         return DUTCH_PHONE_NUMBERS.matcher(number).matches();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PhoneNumber number = (PhoneNumber) o;
+        return Objects.equals(number, number.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }
