@@ -2,6 +2,7 @@ package com.patientservice.Patient.controller;
 
 import com.patientservice.Patient.Exceptions.DatabaseOperationException;
 import com.patientservice.Patient.Exceptions.PatientNotFoundException;
+import com.patientservice.Patient.dto.AppointmentDTO.AppointmentDTO;
 import com.patientservice.Patient.dto.PatientDTO;
 import com.patientservice.Patient.model.MedicalHistory;
 import com.patientservice.Patient.model.Patient;
@@ -34,6 +35,24 @@ public class PatientController {
         try {
             this.patientService.createPatient(patientDTO);
             return new ResponseEntity(patientDTO, HttpStatus.CREATED);
+        } catch(Exception exception) {
+            return new ResponseEntity(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Create a patient
+     *
+     * @param appointmentDTO pass the patient dto
+     *
+     * @return ResponseEntity, with the patientDTO.
+     */
+    @PostMapping("/appointments/{patientId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    private ResponseEntity<AppointmentDTO> createAppointmentForPatient(@PathVariable("patientId") Long patientId, @RequestBody AppointmentDTO appointmentDTO){
+        try {
+            this.patientService.createAppointmentForPatient(patientId, appointmentDTO);
+            return new ResponseEntity(appointmentDTO, HttpStatus.CREATED);
         } catch(Exception exception) {
             return new ResponseEntity(exception.getMessage(), HttpStatus.NOT_FOUND);
         }

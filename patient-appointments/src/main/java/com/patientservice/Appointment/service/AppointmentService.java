@@ -37,12 +37,12 @@ public class AppointmentService {
         }  catch (com.patientservice.Appointment.Exceptions.DuplicateEntryException e) {
             throw e;
         } catch (Exception e) {
-            throw new com.patientservice.Appointment.Exceptions.DatabaseOperationException("Error creating patient in database", e);
+            throw new com.patientservice.Appointment.Exceptions.DatabaseOperationException("Error creating appointment in database", e);
         }
     }
 
     /**
-     * Returns the patients in our DB
+     * Returns the appointments in our DB
      *
      * @return List of patients
      */

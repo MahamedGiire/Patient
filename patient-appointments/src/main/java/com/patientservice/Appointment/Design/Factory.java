@@ -30,7 +30,7 @@ public class Factory {
      */
     public Appointment createAppointment(AppointmentDTO appointmentDTO){
 
-        Appointment appointment = new Appointment(appointmentDTO.getId(), appointmentDTO.getAppointmentDate(),
+        Appointment appointment = new Appointment(appointmentDTO.getId(), appointmentDTO.getPatientId(), appointmentDTO.getAppointmentDate(),
                                                 appointmentDTO.getDoctor(), appointmentDTO.getHospital(), appointmentDTO.getCategory());
 
         return appointment;

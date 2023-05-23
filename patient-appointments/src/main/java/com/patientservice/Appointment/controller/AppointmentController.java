@@ -24,9 +24,9 @@ public class AppointmentController {
      *
      * @return ResponseEntity, with the appointmentDTO.
      */
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    private ResponseEntity<Appointment> createPatient(@RequestBody AppointmentDTO appointmentDTO){
+    @PostMapping()
+    @ResponseStatus(HttpStatus.OK)
+    private ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentDTO appointmentDTO){
         try {
             this.appointmentService.createAppointment(appointmentDTO);
             return new ResponseEntity(appointmentDTO, HttpStatus.CREATED);
@@ -42,7 +42,7 @@ public class AppointmentController {
      */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<AppointmentDTO> getAllPatienten(){
+    public List<AppointmentDTO> getAllAppointments(){
         return appointmentService.getAllAppointments();
     }
 }

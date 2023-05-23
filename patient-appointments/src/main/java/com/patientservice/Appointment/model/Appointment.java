@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * The Appointment Class saves the information of the appointment
@@ -21,6 +22,9 @@ public class Appointment {
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id; // The id of Appointment
+
+    @Column(name = "patient_id")
+    private Long patientId; // The id of Patient, We add this through RestTemplate
 
     @Column(name = "appointmentDate")
     private LocalDate appointmentDate; // The date of the appointment
@@ -47,8 +51,9 @@ public class Appointment {
      * @param category The category of the Appointment.
      */
 
-    public Appointment(Long id, LocalDate appointmentDate, Doctor doctor, Hospital hospital, Category category) {
+    public Appointment(Long id, Long patientId, LocalDate appointmentDate, Doctor doctor, Hospital hospital, Category category) {
         this.id = id;
+        this.patientId = patientId;
         this.appointmentDate = appointmentDate;
         this.doctor = doctor;
         this.hospital = hospital;
@@ -67,6 +72,14 @@ public class Appointment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
 
     public LocalDate getAppointmentDate() {
