@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +36,9 @@ public class PatientService {
 
     @Autowired
     private final RestTemplate restTemplate;
+
+    @Value("${appointment.app.url}")
+    private String APPOINTMENT_URL;
 
     /**
      *
@@ -68,10 +72,9 @@ public class PatientService {
         try {
             Patient patient = patientRepository.findById(patientId)
                     .orElseThrow(() -> new Exception("Patient cannot be found"));
-            appointmentDTO.setPatientId(patientId);
+            appointmentDTO.setPatientId(patient.getId());
 
-            String url = "http://appointments-app:9090/api/appointment";
-            restTemplate.postForObject(url, appointmentDTO, AppointmentDTO.class);
+            restTemplate.postForObject(APPOINTMENT_URL, appointmentDTO, AppointmentDTO.class);
 
         }  catch (DuplicateEntryException e) {
             throw e;
