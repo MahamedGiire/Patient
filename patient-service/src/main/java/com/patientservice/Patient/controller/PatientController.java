@@ -6,6 +6,7 @@ import com.patientservice.Patient.dto.AppointmentDTO.AppointmentDTO;
 import com.patientservice.Patient.dto.PatientDTO;
 import com.patientservice.Patient.model.MedicalHistory;
 import com.patientservice.Patient.model.Patient;
+import com.patientservice.Patient.producer.RabbitMQProducer;
 import com.patientservice.Patient.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,14 @@ import java.util.Optional;
 public class PatientController {
 
     private final PatientService patientService;
+
+    private final RabbitMQProducer rabbitMQProducer;
+
+    @GetMapping("/publish")
+    public ResponseEntity<String> sendMessage(@RequestParam("message") String message){
+        rabbitMQProducer.sendMessage(message);
+        return ResponseEntity.ok("message sent!");
+    }
 
     /**
      * Create a patient
@@ -41,7 +50,7 @@ public class PatientController {
     }
 
     /**
-     * Create a patient
+     * Create a appointment for the patient
      *
      * @param appointmentDTO pass the patient dto
      *
