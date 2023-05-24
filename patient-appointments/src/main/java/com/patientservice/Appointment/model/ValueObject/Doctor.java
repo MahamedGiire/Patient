@@ -1,10 +1,9 @@
-package com.patientservice.Patient.model.ValueObject;
+package com.patientservice.Appointment.model.ValueObject;
 
 import jakarta.persistence.Embeddable;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Objects;
 
@@ -13,15 +12,12 @@ import java.util.Objects;
 @Getter
 @Builder
 
-/**
- * The Name value object in the Patient entity
- */
-public class Name {
+public class Doctor {
 
     private String firstName;
     private String lastName;
 
-    public Name(String firstName, String lastName) {
+    public Doctor(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -30,9 +26,9 @@ public class Name {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Name name = (Name) o;
-        return Objects.equals(firstName, name.firstName) &&
-                Objects.equals(lastName, name.lastName);
+        Doctor doctor = (Doctor) o;
+        return Objects.equals(firstName, doctor.firstName) &&
+                Objects.equals(lastName, doctor.lastName);
     }
 
     @Override

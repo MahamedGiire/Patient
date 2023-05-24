@@ -4,19 +4,28 @@ import com.patientservice.Patient.Design.Factory;
 import com.patientservice.Patient.Exceptions.DatabaseOperationException;
 import com.patientservice.Patient.Exceptions.DuplicateEntryException;
 import com.patientservice.Patient.Exceptions.PatientNotFoundException;
+import com.patientservice.Patient.dto.AppointmentDTO.AppointmentDTO;
 import com.patientservice.Patient.dto.PatientDTO;
 import com.patientservice.Patient.model.MedicalHistory;
 import com.patientservice.Patient.model.Patient;
+import com.patientservice.Patient.model.ValueObject.Category;
+import com.patientservice.Patient.model.ValueObject.Doctor;
+import com.patientservice.Patient.model.ValueObject.Hospital;
 import com.patientservice.Patient.repository.PatientRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class PatientService {
     @Autowired
@@ -24,6 +33,12 @@ public class PatientService {
 
     @Autowired
     private final Factory factory;
+
+    @Autowired
+    private final RestTemplate restTemplate;
+
+    @Value("${appointment.app.url}")
+    private String APPOINTMENT_URL;
 
     /**
      *
@@ -43,6 +58,29 @@ public class PatientService {
             throw e;
         } catch (Exception e) {
             throw new DatabaseOperationException("Error creating patient in database", e);
+        }
+
+    }
+
+    /**
+     *
+     * Create a appointment for the patient.
+     *
+     */
+    public void createAppointmentForPatient(Long patientId, AppointmentDTO appointmentDTO) throws DuplicateEntryException, DatabaseOperationException{
+
+        try {
+            Patient patient = patientRepository.findById(patientId)
+                    .orElseThrow(() -> new Exception("Patient cannot be found"));
+            appointmentDTO.setPatientId(patient.getId());
+
+            restTemplate.postForObject(APPOINTMENT_URL, appointmentDTO, AppointmentDTO.class);
+
+        }  catch (DuplicateEntryException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new DatabaseOperationException("Error finding patient in database", e);
         }
 
     }

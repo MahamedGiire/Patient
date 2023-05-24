@@ -2,9 +2,11 @@ package com.patientservice.Patient.controller;
 
 import com.patientservice.Patient.Exceptions.DatabaseOperationException;
 import com.patientservice.Patient.Exceptions.PatientNotFoundException;
+import com.patientservice.Patient.dto.AppointmentDTO.AppointmentDTO;
 import com.patientservice.Patient.dto.PatientDTO;
 import com.patientservice.Patient.model.MedicalHistory;
 import com.patientservice.Patient.model.Patient;
+import com.patientservice.Patient.producer.RabbitMQProducer;
 import com.patientservice.Patient.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,14 @@ public class PatientController {
 
     private final PatientService patientService;
 
+    private final RabbitMQProducer rabbitMQProducer;
+
+    @GetMapping("/publish")
+    public ResponseEntity<String> sendMessage(@RequestParam("message") String message){
+        rabbitMQProducer.sendMessage(message);
+        return ResponseEntity.ok("message sent!");
+    }
+
     /**
      * Create a patient
      *
@@ -34,6 +44,24 @@ public class PatientController {
         try {
             this.patientService.createPatient(patientDTO);
             return new ResponseEntity(patientDTO, HttpStatus.CREATED);
+        } catch(Exception exception) {
+            return new ResponseEntity(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Create a appointment for the patient
+     *
+     * @param appointmentDTO pass the patient dto
+     *
+     * @return ResponseEntity, with the patientDTO.
+     */
+    @PostMapping("/appointments/{patientId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    private ResponseEntity<AppointmentDTO> createAppointmentForPatient(@PathVariable("patientId") Long patientId, @RequestBody AppointmentDTO appointmentDTO){
+        try {
+            this.patientService.createAppointmentForPatient(patientId, appointmentDTO);
+            return new ResponseEntity(appointmentDTO, HttpStatus.CREATED);
         } catch(Exception exception) {
             return new ResponseEntity(exception.getMessage(), HttpStatus.NOT_FOUND);
         }

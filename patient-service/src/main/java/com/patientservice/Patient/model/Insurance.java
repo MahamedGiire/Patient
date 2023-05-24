@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table
-
+@Builder
 public class Insurance {
 
     @Id
